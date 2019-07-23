@@ -1,3 +1,5 @@
+import { log } from "util";
+
 import Game from "./game";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,6 +21,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //   game.start();
   // })
-  console.log(game);
   game.loop();
 });
