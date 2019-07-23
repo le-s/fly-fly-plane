@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/background.js":
+/*!***************************!*\
+  !*** ./src/background.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass Background {\n  constructor(canvas, ctx) {\n    this.sX = 0;\n    this.sY = 0;\n    this.w = 275;\n    this.h = 226;\n    this.x = 0;\n    this.y = canvas.height - 226;\n    this.ctx = ctx;\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Background);\n\n//# sourceURL=webpack:///./src/background.js?");
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -94,7 +106,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nclass Game {\n  constructor(canvas, context) {\n    this.canvas = canvas;\n    this.ctx = context;\n    this.frames = 0;\n  }\n\n  draw() {\n    this.ctx.fillStyle = \"#5DDEF9\";\n    this.ctx.fillRect(0,0, canvas.width, canvas.height);\n  }\n\n  update() {\n\n  }\n\n  loop() {\n    this.update();\n    this.draw();\n    this.frames++;\n\n    requestAnimationFrame(loop);\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./background */ \"./src/background.js\");\n\n\nconst sprite = new Image();\n// sprite.src = \"./assets/spritesheet.png\"\nsprite.src = \"./assets/sprite.png\"\n\nclass Game {\n  constructor(canvas, context) {\n    this.canvas = canvas;\n    this.ctx = context;\n    this.frames = 0;\n    this.bg = new _background__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.canvas, this.ctx);\n  }\n\n  draw() {\n    this.ctx.fillStyle = \"#5DDEF9\";\n    this.ctx.fillRect(0,0, canvas.width, canvas.height);\n\n    console.log(this.bg)\n    console.log(this.bg.sX)\n    this.ctx.drawImage(sprite, this.bg.sX, this.bg.sY, this.bg.w, this.bg.h, this.bg.x, this.bg.y, this.bg.w, this.bg.h)\n  }\n\n  update() {\n\n  }\n\n  loop() {\n    this.update();\n    this.draw();\n    this.frames++;\n\n    requestAnimationFrame(this.loop);\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -106,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nclass Game {\n  constructor(c
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvas = document.getElementById(\"canvas\");\n  console.log('hello')\n  const ctx = canvas.getContext('2d');\n  canvas.height = 480;\n  canvas.width = 320;\n  let game = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas, ctx);\n  // document.getElementById(\"how\").innerHTML = `Use directional arrows or WASD to move your car around. Collect as much cash as you can to increase your points while avoiding the rocks!`;\n\n  // document.getElementById(\"play-btn\").addEventListener(\"click\", () => {\n\n  //   if (game.gameOver === true) {\n  //     game.cleanUp();\n  //     game = new Game(canvas, ctx);\n  //   }\n\n  //   setupControlListeners(game);\n\n  //   game.start();\n  // })\n  game.loop();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvas = document.getElementById(\"canvas\");\n  const ctx = canvas.getContext('2d');\n  canvas.height = 480;\n  canvas.width = 320;\n  let game = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"](canvas, ctx);\n  // document.getElementById(\"how\").innerHTML = `Use directional arrows or WASD to move your car around. Collect as much cash as you can to increase your points while avoiding the rocks!`;\n\n  // document.getElementById(\"play-btn\").addEventListener(\"click\", () => {\n\n  //   if (game.gameOver === true) {\n  //     game.cleanUp();\n  //     game = new Game(canvas, ctx);\n  //   }\n\n  //   setupControlListeners(game);\n\n  //   game.start();\n  // })\n  console.log(game);\n  game.loop();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

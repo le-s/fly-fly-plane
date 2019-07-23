@@ -2,7 +2,6 @@ import Game from "./game";
 
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas");
-  console.log('hello')
   const ctx = canvas.getContext('2d');
   canvas.height = 480;
   canvas.width = 320;
@@ -20,5 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //   game.start();
   // })
+  console.log(game);
   game.loop();
 });
