@@ -15,8 +15,8 @@ class Game {
   draw() {
     this.ctx.fillStyle = "#5DDEF9";
     this.ctx.fillRect(0,0, canvas.width, canvas.height);
-
-    this.bg.draw();
+    this.ctx.drawImage(sprite, 0, 0, 275, 226)
+    this.bg.draw(this.ctx);
   }
 
   update() {
