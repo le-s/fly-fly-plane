@@ -21,5 +21,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //   game.start();
   // })
-  game.draw();
+  game.loop();
 });

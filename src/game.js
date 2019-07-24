@@ -1,8 +1,10 @@
+// import { log } from "util";
+
 import Background from './background'
+import Plane from './plane'
 
 const sprite = new Image();
-// sprite.src = "./assets/spritesheet.png"
-sprite.src = "./assets/sprite.png"
+sprite.src = "./assets/spritesheet.png"
 
 class Game {
   constructor(canvas, context) {
@@ -10,13 +12,14 @@ class Game {
     this.ctx = context;
     this.frames = 0;
     this.bg = new Background(this.canvas, this.ctx);
+    this.plane = new Plane();
   }
 
   draw() {
     this.ctx.fillStyle = "#5DDEF9";
     this.ctx.fillRect(0,0, canvas.width, canvas.height);
-    this.ctx.drawImage(sprite, 0, 0, 275, 226)
     this.bg.draw(this.ctx);
+    this.plane.draw(this.ctx)
   }
 
   update() {

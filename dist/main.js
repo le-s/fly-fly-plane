@@ -138,7 +138,7 @@ eval("/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. a
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sprite */ \"./src/sprite.js\");\n\n\nconst skyImg = new Image();\nskyImg.src = \"./assets/sprite.png\"\n\nclass Background {\n  constructor(canvas) {\n    this.sX = 0;\n    this.sY = 0;\n    this.w = 275;\n    this.h = 226;\n    this.x = 0;\n    this.y = canvas.height - 226;\n  }\n\n  draw(ctx) {\n    console.log(skyImg);\n    // console.log(this.y)\n    ctx.drawImage(skyImg, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h)\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Background);\n\n//# sourceURL=webpack:///./src/background.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sprite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sprite */ \"./src/sprite.js\");\n\n\nconst skyImg = new Image();\nskyImg.src = \"./assets/BG.png\"\n\nclass Background {\n  constructor() {\n    this.sX = 0;\n    this.sY = 0;\n    this.w = 1460;\n    this.h = 1095;\n    this.x = 0;\n    this.y = 0;\n  }\n\n  draw(ctx) {\n    skyImg.onload = () => {\n      ctx.drawImage(skyImg, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w/2, this.h/2)\n    }\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Background);\n\n//# sourceURL=webpack:///./src/background.js?");
 
 /***/ }),
 
@@ -150,7 +150,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _spr
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./background */ \"./src/background.js\");\n\n\nconst sprite = new Image();\n// sprite.src = \"./assets/spritesheet.png\"\nsprite.src = \"./assets/sprite.png\"\n\nclass Game {\n  constructor(canvas, context) {\n    this.canvas = canvas;\n    this.ctx = context;\n    this.frames = 0;\n    this.bg = new _background__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.canvas, this.ctx);\n  }\n\n  draw() {\n    this.ctx.fillStyle = \"#5DDEF9\";\n    this.ctx.fillRect(0,0, canvas.width, canvas.height);\n    this.ctx.drawImage(sprite, 0, 0, 275, 226)\n    this.bg.draw(this.ctx);\n  }\n\n  update() {\n\n  }\n\n  loop() {\n    this.update();\n    this.draw();\n    this.frames++;\n\n    requestAnimationFrame(this.loop);\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _background__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./background */ \"./src/background.js\");\n/* harmony import */ var _plane__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./plane */ \"./src/plane.js\");\n// import { log } from \"util\";\n\n\n\n\nconst sprite = new Image();\nsprite.src = \"./assets/spritesheet.png\"\n\nclass Game {\n  constructor(canvas, context) {\n    this.canvas = canvas;\n    this.ctx = context;\n    this.frames = 0;\n    this.bg = new _background__WEBPACK_IMPORTED_MODULE_0__[\"default\"](this.canvas, this.ctx);\n    this.plane = new _plane__WEBPACK_IMPORTED_MODULE_1__[\"default\"]();\n  }\n\n  draw() {\n    this.ctx.fillStyle = \"#5DDEF9\";\n    this.ctx.fillRect(0,0, canvas.width, canvas.height);\n    this.bg.draw(this.ctx);\n    this.plane.draw(this.ctx)\n  }\n\n  update() {\n\n  }\n\n  loop() {\n    this.update();\n    this.draw();\n    this.frames++;\n\n    requestAnimationFrame(this.loop);\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -162,7 +162,19 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _bac
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! util */ \"./node_modules/util/util.js\");\n/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvas = document.getElementById(\"canvas\");\n  const ctx = canvas.getContext('2d');\n  canvas.height = 480;\n  canvas.width = 320;\n  let game = new _game__WEBPACK_IMPORTED_MODULE_1__[\"default\"](canvas, ctx);\n  // document.getElementById(\"how\").innerHTML = `Use directional arrows or WASD to move your car around. Collect as much cash as you can to increase your points while avoiding the rocks!`;\n\n  // document.getElementById(\"play-btn\").addEventListener(\"click\", () => {\n\n  //   if (game.gameOver === true) {\n  //     game.cleanUp();\n  //     game = new Game(canvas, ctx);\n  //   }\n\n  //   setupControlListeners(game);\n\n  //   game.start();\n  // })\n  game.draw();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! util */ \"./node_modules/util/util.js\");\n/* harmony import */ var util__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(util__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n\n\n\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n  const canvas = document.getElementById(\"canvas\");\n  const ctx = canvas.getContext('2d');\n  canvas.height = 480;\n  canvas.width = 320;\n  let game = new _game__WEBPACK_IMPORTED_MODULE_1__[\"default\"](canvas, ctx);\n  // document.getElementById(\"how\").innerHTML = `Use directional arrows or WASD to move your car around. Collect as much cash as you can to increase your points while avoiding the rocks!`;\n\n  // document.getElementById(\"play-btn\").addEventListener(\"click\", () => {\n\n  //   if (game.gameOver === true) {\n  //     game.cleanUp();\n  //     game = new Game(canvas, ctx);\n  //   }\n\n  //   setupControlListeners(game);\n\n  //   game.start();\n  // })\n  game.loop();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/plane.js":
+/*!**********************!*\
+  !*** ./src/plane.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst planeImg1 = new Image();\nplaneImg1.src = \"./assets/spritesheet.png\";\n\nconst planeImg2 = new Image();\nplaneImg2.src = \"./assets/Fly (2).png\";\n\nclass Plane {\n  constructor() {\n    this.animation = [\n      {sX: 480, sY: 1109},\n      {sX: 933, sY: 1109}\n    ];\n    this.w = 443;\n    this.h = 302;\n    this.x = 0;\n    this.y = 0;\n\n    this.frame = 1;\n  }\n\n  draw(ctx) {\n    let plane = this.animation[this.frame];\n\n    planeImg1.onload = () => {\n      ctx.drawImage(planeImg1, plane.sX, plane.sY, this.w, this.h, this.x, this.y, this.w / 2, this.h / 2)\n    }\n  }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Plane);\n\n//# sourceURL=webpack:///./src/plane.js?");
 
 /***/ }),
 
